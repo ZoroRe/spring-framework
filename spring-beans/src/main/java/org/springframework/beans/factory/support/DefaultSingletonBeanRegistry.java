@@ -207,7 +207,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
-		// fixme NOTE:这里通过三级缓存取读取单例，首先是一级缓存的单例池:singletonObjects,这里保存已经完整可用的单例，其次是二级缓存的
+		// RTFSC:这里通过三级缓存取读取单例，首先是一级缓存的单例池:singletonObjects,这里保存已经完整可用的单例，其次是二级缓存的
 		//  earlySingletonObjects,这里保存创建出来，但没完成创建(比如数据还未注入),目前也处于创建过程的 bean，最后是三级缓存
 		//  singletonFactories,这个 singletonFactories 其实并没有缓存着已经创建的 bean,而是提供一个创建的 factory，
 		//  如果程序员没有未自定义的对象创建 beanFactory 怎么办 ？其实这部分在 doGetBean 调用 getSingleton()时有两次调用，第二次会传入

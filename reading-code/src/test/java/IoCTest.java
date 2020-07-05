@@ -23,6 +23,7 @@ public class IoCTest {
 		// 叫做单例池, singletonObjects,容器是一组组件和过程的集合，包括BeanFactory、单例池、BeanPostProcessor等以及之间的协作流程）
 
 		/**
+		 * RTFSC
 		 * Ioc容器创建管理Bean对象的，Spring Bean是有生命周期的
 		 * 构造器执行、初始化方法执行、Bean后置处理器的before/after方法、：AbstractApplicationContext#refresh#finishBeanFactoryInitialization
 		 * Bean工厂后置处理器初始化、方法执行：AbstractApplicationContext#refresh#invokeBeanFactoryPostProcessors
@@ -31,6 +32,7 @@ public class IoCTest {
 
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 		/**
+		 * RTFSC
 		 * 关于循环依赖，可以在下面放大打断点看看主要调用方法,另外关注下下面几个方法
 		 * AbstractBeanFactory.doGetBean()
 		 * DefaultSingletonBeanRegistry.getSingleton()
@@ -46,6 +48,7 @@ public class IoCTest {
 		System.out.println("分别针对 BeanC 和 BeanD 中的构造器谁依赖谁不同场景测试");
 		ApplicationContext context = new AnnotationConfigApplicationContext(ReadingConfig.class);
 		/**
+		 * RTFSC
 		 * 1.如果D构造器依赖C，C字段注入D，可以运行成功,不会触发 UnsatisfiedDependencyException
 		 * 此时看日志，首先构造C，然后在注入D的时候，去创建D，此时的C已经可以使用并注入
 		 * 2.如果是C构造器依赖D,D字段注入C,运行触发 UnsatisfiedDependencyException

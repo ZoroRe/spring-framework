@@ -285,7 +285,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object bean;
 
 		// Eagerly check singleton cache for manually registered singletons.
-		// fixme NOTE:首先这里调用只传 beanName,如果获取不到，并且没有实现其BeanFactory,后面会走到357行代码对应的 getSingleton 并传入一个 beanFactory 的方法
+		// RTFSC 首先这里调用只传 beanName,如果获取不到，并且没有实现其BeanFactory,后面会走到357行代码对应的 getSingleton 并传入一个 beanFactory 的方法
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
@@ -351,7 +351,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
-					// fixme NOTE: 这里需要传入一个 BeanFactory,表示因为其没有对应自定义的BeanFactory，可能只是一个普通对象，这样这个BeanFactory
+					// RTFSC: 这里需要传入一个 BeanFactory,表示因为其没有对应自定义的BeanFactory，可能只是一个普通对象，这样这个BeanFactory
 					//  内部的createBean,其实就是通过反射获取对象
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
